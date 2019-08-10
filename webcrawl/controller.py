@@ -1,6 +1,9 @@
 from webcrawl.assembly import AssemblyCrawler
 from webcrawl.bugsmusic import BugsCrawler
-
+from webcrawl.krx import KrxCrawler
+from webcrawl.naver_stock import StockModel
+from webcrawl.naver_movie import NaverMovie
+from webcrawl.naver_login import NaverLogin
 class Controller:
     def __init__(self):
         pass
@@ -12,10 +15,16 @@ class Controller:
         elif flag == 'b':
             b = BugsCrawler('https://music.bugs.co.kr/chart/track/realtime/total?chartdate=20190810&charthour=11')
             b.scrap()
-        elif flag == '*':
-            result = self.calc.mul()
+        elif flag == 'k':
+            k = KrxCrawler('http://kind.krx.co.kr/disclosureSimpleSearch.do')
+            k.scrap()
+        elif flag == 'ns':
+            ns = StockModel('005930')
+            ns.scrap()
+        elif flag == 'nm':
+            nm = NaverMovie('https://movie.naver.com/movie/sdb/rank/rmovie.nhn')
+            nm.scrap()
+        elif flag == 'nl':
+            nl = NaverLogin('https://nid.naver.com/nidlogin.login')
+            nl.auto_login()
 
-        elif flag == '/':
-            result = self.calc.div()
-
-        return result
